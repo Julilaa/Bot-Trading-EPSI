@@ -13,4 +13,3 @@ class Nemo():
 
             Note that there are list, so you can have multiple candles in one message.
         """
-        print(candle_msg)
