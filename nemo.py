@@ -20,6 +20,3 @@ class Nemo():
         fermeture = candle_dict['AAPL']['c']
         if (fermeture < 300):
             self.client.buy('AAPL', 5)
-        
-        candle_dict = json.loads(candle_msg)
-        fermeture = candle_dict['AAPL']['c']
