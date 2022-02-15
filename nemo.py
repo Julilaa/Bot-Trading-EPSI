@@ -1,3 +1,6 @@
+import json
+
+
 class Nemo():
 
     def __init__(self, client):
