@@ -13,3 +13,7 @@ class Nemo():
 
             Note that there are list, so you can have multiple candles in one message.
         """
+        candle_dict = json.loads(candle_msg)
+        fermeture = candle_dict['AAPL']['c']
+        if (fermeture < 300) :
+            self.client.buy('AAPL', 5)
