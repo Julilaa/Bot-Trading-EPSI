@@ -8,6 +8,7 @@ class Nemo():
         client is used to issue orders
         """
         self.client = client
+        self.previous_price = 0
 
     def process_candle(self, candle_msg:str):
         """This function is called when a new candle_msg is received.
@@ -17,6 +18,25 @@ class Nemo():
             Note that there are list, so you can have multiple candles in one message.
         """
 
-        breakpoint()
+        candle_dict = json.loads(candle_msg)
+        if 'AAPL' in candle_dict:
+            self.buy_aapl_if_pertinent(candle_dict)
 
+            self.sell_aapl_if_pertinent(candle_dict)
+
+            self.previous_price = candle_dict['AAPL']['c']
+
+    def sell_aapl_if_pertinent(self, candle_dict):
+        if candle_dict['AAPL']['c'] > self.previous_price:
+            if self.client.money > candle_dict['AAPL']['c']:
+                self.client.sell('AAPL', 1)
+
+    def buy_aapl_if_pertinent(self, candle_dict):
+        if candle_dict['AAPL']['c'] < self.previous_price:
+            if self.client.money > candle_dict['AAPL']['c']:
+                self.client.buy('AAPL', 1)
+
+        
+            
+    
 
