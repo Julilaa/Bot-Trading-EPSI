@@ -40,9 +40,10 @@ class Nemo():
                 if self.client.money > candle_dict['ATVI']['c']:
                     self.client.buy('ATVI', 1)
 
-            if candle_dict['ATVI']['c'] < self.previous_price:
+            if candle_dict['ATVI']['c'] > self.previous_price:
                 if self.client.money > candle_dict['ATVI']['c']:
-                    self.client.buy('ATVI', 1)
+                    if self.client.actions['ATVI'] > 1:
+                        self.client.sell('ATVI', 1)
             
             self.previous_price = candle_dict['ATVI']['c']
 
@@ -52,9 +53,10 @@ class Nemo():
                 if self.client.money > candle_dict['AMZN']['c']:
                     self.client.buy('AMZN', 1)
 
-            if candle_dict['AMZN']['c'] < self.previous_price:
+            if candle_dict['AMZN']['c'] > self.previous_price:
                 if self.client.money > candle_dict['AMZN']['c']:
-                    self.client.buy('AMZN', 1)
+                    if self.client.actions['AMZN'] > 1:
+                        self.client.sell('AMZN', 1)
             
             self.previous_price = candle_dict['AMZN']['c']
 
@@ -64,9 +66,10 @@ class Nemo():
                 if self.client.money > candle_dict['TSLA']['c']:
                     self.client.buy('TSLA', 1)
 
-            if candle_dict['TSLA']['c'] < self.previous_price:
+            if candle_dict['TSLA']['c'] > self.previous_price:
                 if self.client.money > candle_dict['TSLA']['c']:
-                    self.client.buy('TSLA', 1)
+                    if self.client.actions['TSLA'] > 1:
+                        self.client.sell('TSLA', 1)
             
             self.previous_price = candle_dict['TSLA']['c']
 
@@ -76,9 +79,10 @@ class Nemo():
                 if self.client.money > candle_dict['DIS']['c']:
                     self.client.buy('DIS', 1)
 
-            if candle_dict['DIS']['c'] < self.previous_price:
+            if candle_dict['DIS']['c'] > self.previous_price:
                 if self.client.money > candle_dict['DIS']['c']:
-                    self.client.buy('DIS', 1)
+                    if self.client.actions['DIS'] > 1:
+                        self.client.sell('DIS', 1)
             
             self.previous_price = candle_dict['DIS']['c']
 
