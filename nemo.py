@@ -21,11 +21,12 @@ class Nemo():
 
         candle_dict = json.loads(candle_msg)
         if globals.affichage:
-            globals.data[globals.symboles.index(candle_dict.keys()[0])][0].append(candle_dict['o'])
-            globals.data[globals.symboles.index(candle_dict.keys()[0])][1].append(candle_dict['c'])
-            globals.data[globals.symboles.index(candle_dict.keys()[0])][2].append(candle_dict['h'])
-            globals.data[globals.symboles.index(candle_dict.keys()[0])][3].append(candle_dict['l'])
-            globals.data[globals.symboles.index(candle_dict.keys()[0])][4].append(candle_dict['t'])
+            s = list(candle_dict.keys())[0]
+            globals.data[globals.symboles.index(s)][0].append(candle_dict[s]['o'])
+            globals.data[globals.symboles.index(s)][1].append(candle_dict[s]['c'])
+            globals.data[globals.symboles.index(s)][2].append(candle_dict[s]['h'])
+            globals.data[globals.symboles.index(s)][3].append(candle_dict[s]['l'])
+            globals.data[globals.symboles.index(s)][4].append(candle_dict[s]['t'])
             globals.argent.append(100000+self.client.gains())
         if 'AAPL' in candle_dict:
             self.buy_aapl_if_pertinent(candle_dict)
