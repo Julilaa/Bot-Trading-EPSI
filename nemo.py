@@ -1,3 +1,4 @@
+import globals
 import json
 
 
@@ -19,6 +20,13 @@ class Nemo():
         """
 
         candle_dict = json.loads(candle_msg)
+        if globals.affichage:
+            globals.data[globals.symboles.index(candle_dict.keys()[0])][0].append(candle_dict['o'])
+            globals.data[globals.symboles.index(candle_dict.keys()[0])][1].append(candle_dict['c'])
+            globals.data[globals.symboles.index(candle_dict.keys()[0])][2].append(candle_dict['h'])
+            globals.data[globals.symboles.index(candle_dict.keys()[0])][3].append(candle_dict['l'])
+            globals.data[globals.symboles.index(candle_dict.keys()[0])][4].append(candle_dict['t'])
+            globals.argent.append(100000+self.client.gains())
         if 'AAPL' in candle_dict:
             self.buy_aapl_if_pertinent(candle_dict)
 
@@ -26,7 +34,7 @@ class Nemo():
 
             self.previous_price = candle_dict['AAPL']['c']
 
-        candle_dict = json.loads(candle_msg)
+        
         if 'BINANCE:BTCUSDT' in candle_dict:
             self.buy_binance_if_pertinent(candle_dict)
 
@@ -34,7 +42,7 @@ class Nemo():
             
             self.previous_price = candle_dict['BINANCE:BTCUSDT']['c']
 
-        candle_dict = json.loads(candle_msg)
+        
         if 'ATVI' in candle_dict:
             if candle_dict['ATVI']['c'] < self.previous_price:
                 if self.client.money > candle_dict['ATVI']['c']:
@@ -47,7 +55,7 @@ class Nemo():
             
             self.previous_price = candle_dict['ATVI']['c']
 
-        candle_dict = json.loads(candle_msg)
+       
         if 'AMZN' in candle_dict:
             if candle_dict['AMZN']['c'] < self.previous_price:
                 if self.client.money > candle_dict['AMZN']['c']:
@@ -60,7 +68,7 @@ class Nemo():
             
             self.previous_price = candle_dict['AMZN']['c']
 
-        candle_dict = json.loads(candle_msg)
+      
         if 'TSLA' in candle_dict:
             if candle_dict['TSLA']['c'] < self.previous_price:
                 if self.client.money > candle_dict['TSLA']['c']:
@@ -73,7 +81,7 @@ class Nemo():
             
             self.previous_price = candle_dict['TSLA']['c']
 
-        candle_dict = json.loads(candle_msg)
+      
         if 'DIS' in candle_dict:
             if candle_dict['DIS']['c'] < self.previous_price:
                 if self.client.money > candle_dict['DIS']['c']:
