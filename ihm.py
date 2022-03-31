@@ -5,9 +5,12 @@ import shutil
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-path = os.path.dirname(__file__)[:os.path.dirname(__file__).rfind('/')]
+path = os.path.dirname(__file__)[:os.path.dirname(__file__).rfind('\\')]
 sys.path.append(path)
-shutil.copy(path+"/candle_sample.txt", "candle_sample.txt")
+try:
+    shutil.copy(path+"\\candle_sample.txt", "candle_sample.txt")
+except:
+    print("Fichier déjà copié")
 globals.affichage = True
 #print(sys.path)
 import main_simple
