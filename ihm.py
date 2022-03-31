@@ -1,6 +1,12 @@
 import globals
+import os
+import sys
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+
+sys.path.append(os.path.dirname(__file__)[:os.path.dirname(__file__).rfind('\\')])
+#print(sys.path)
+import main_simple
 
 for i in range(6):
     plot1 = go.Candlestick(x=globals.data[i][4], name="Chandelles", open=globals.data[i][0], high=globals.data[i][2], low=globals.data[i][3], close=globals.data[i][1])
